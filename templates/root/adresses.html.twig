@@ -26,6 +26,25 @@
                 <div class="card-body">
                     Bienvenue sur la première itération de la page adresses du PGI de Noveo Solutions
                     <br /><br />
+                    <div class="card">
+                    <table class="table table-dark mb-0">
+                            <thead>
+                                <tr>Adresse
+                                <br /><br />
+                                </tr>
+                                <th>N°</th>
+                                <th>Voie/rue</th>
+                                <th>Ville</th>
+                                <th>Code postal</th>
+                            </thead>
+                            <tbody>
+                            <td>12</td>
+                            <td>Rue des lilas</td>
+                            <td>Limoges</td>
+                            <td>40280</td>
+                            </tbody>
+                        </table> 
+                    </div>                 
                     {% if content|default %}
                         {{ content|default|raw }}
                     {% endif %}

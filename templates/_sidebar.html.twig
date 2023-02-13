@@ -39,46 +39,24 @@
     </div>
     <div class="sidebar-menu">
         <ul class="menu">
-            <li class="sidebar-title">Sidemenu Title</li>
-            <li class="sidebar-item has-sub {{ is_active('app_menu1') }}">
-                <a href="#" class='sidebar-link'>
-                    <i class="bi bi-building"></i>
-                    <span>Menu 1</span>
-                </a>
-                <ul class="submenu {{ is_active('app_menu1.submenu1') }}">
-                    <li class="submenu-item {{ is_active('app_menu1.submenu1') }}">
-                        <a href="{{ path('app_menu1.submenu1') }}">Submenu 1
-                            <i class="bi bi-person-lines-fill float-start me-1"></i>
+            <li class="sidebar-title">PGI Noveo</li>
+                    <li class="sidebar-item has-sub {{ is_active('app_menu1') }}">
+                        <a href="#" class='sidebar-link'>
+                            <i class="bi bi-journal"></i>
+                            <span>Gestion</span>
                         </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="sidebar-item {{ is_active('app_menu2') }}">
-                <a href="{{ path('app_menu2') }}" class='sidebar-link'>
-                    <i class="bi bi-journals"></i>
-                    <span>Menu 2</span>
-                </a>
-            </li>
-            <li class="sidebar-item has-sub {{ is_active('app_menu3') }}">
-                <a href="#" class='sidebar-link'>
-                    <i class="bi bi-key"></i>
-                    <span>Menu 3</span>
-                </a>
-                <ul class="submenu {{ is_active('app_menu3') }}">
-                    <li class="submenu-item {{ is_active('app_menu3.submenu1') }}">
-                        <a href="{{ path('app_menu3.submenu1') }}">Submenu 1
-                            <i class="bi bi-egg float-start me-1"></i>
-                        </a>
-                    </li>
-                    <li class="submenu-item {{ is_active('app_menu3.submenu2') }}">
-                        <a href="{{ path('app_menu3.submenu2') }}">Submenu 2
-                            <i class="bi bi-key-fill float-start me-1"></i>
-                        </a>
-                    </li>
-                    <li class="submenu-item {{ is_active('app_menu3.submenu3') }}">
-                        <a href="{{ path('app_menu3.submenu3') }}">Submenu 3
-                            <i class="bi bi-receipt float-start me-1"></i>
-                        </a>
+                        <ul class="submenu {{ is_active('app_menu1.submenu1','app_menu1.submenu2') }}">
+                            <li class="submenu-item {{ is_active('app_menu1.submenu1') }}">
+                                <a href="{{ path('app_menu1.submenu1') }}">Clients
+                                    <i class="bi bi-person-lines-fill float-start me-1"></i>
+                                </a>
+                            </li>
+                            <li class="submenu-item {{ is_active('app_menu1.submenu2') }}">
+                                <a href="{{ path('app_menu1.submenu2') }}">Adresses
+                                    <i class="bi bi-building float-start me-1"></i>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </li>

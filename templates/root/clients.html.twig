@@ -26,6 +26,25 @@
                 <div class="card-body">
                     Bienvenue sur la première itération de la page client du PGI de Noveo Solutions
                     <br /><br />
+                    <div class="card">
+                    <table class="table table-dark mb-0">
+                            <thead>
+                                <tr>Listing Clients</tr>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Tél</th>
+                                <th>Commandes</th>
+                                <th>Adresses</th>
+                            </thead>
+                            <tbody>
+                            <td>Fallas</td>
+                            <td>Yohann</td>
+                            <td>0645522812</td>
+                            <td>HDD45454SD</td>
+                            <td><a href="">1 route du...</a></td>
+                            </tbody>
+                        </table> 
+                    </div>                                          
                     {% if content|default %}
                         {{ content|default|raw }}
                     {% endif %}

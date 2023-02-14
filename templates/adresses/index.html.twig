@@ -24,29 +24,29 @@
                     <h4 class="card-title">{{ title }}</h4>
                 </div>
                 <div class="card-body">
-                    Bienvenue sur la première itération de la page client du PGI de Noveo Solutions
+                    Bienvenue sur la première itération de la page adresses du PGI de Noveo Solutions
                     <br /><br />
                     <div class="card">
                     <table class="table table-dark mb-0">
                             <thead>
-                                <tr>Listing Clients
+                                <tr>Adresse
                                 <br /><br />
                                 </tr>
-                                <th>Nom</th>
-                                <th>Prénom</th>
-                                <th>Tél</th>
-                                <th>Commandes</th>
-                                <th>Adresses</th>
+                                <th>N°</th>
+                                <th>Voie/rue</th>
+                                <th>Ville</th>
+                                <th>Code postal</th>
                             </thead>
                             <tbody>
-                            <td>Fallas</td>
-                            <td>Yohann</td>
-                            <td>0645522812</td>
-                            <td>HDD45454SD</td>
-                            <td><a href="">1 route du...</a></td>
+                            <td>12</td>
+                            <td>Rue des lilas</td>
+                            <td>Limoges</td>
+                            <td>40280</td>
                             </tbody>
                         </table> 
-                    </div>                                          
+                    </div>  
+                        {{form (form)}}  
+                        <button class="btn btn-primary" type="submit">Enregistrer</button>             
                     {% if content|default %}
                         {{ content|default|raw }}
                     {% endif %}

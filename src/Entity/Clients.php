@@ -30,6 +30,9 @@ class Clients
     #[ORM\ManyToMany(targetEntity: Adresses::class, mappedBy: 'clientid')]
     private Collection $adresses;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $telephone2 = null;
+
     public function __construct()
     {
         $this->adresses = new ArrayCollection();
@@ -111,6 +114,18 @@ class Clients
         if ($this->adresses->removeElement($adress)) {
             $adress->removeClientid($this);
         }
+
+        return $this;
+    }
+
+    public function getTelephone2(): ?string
+    {
+        return $this->telephone2;
+    }
+
+    public function setTelephone2(?string $telephone2): self
+    {
+        $this->telephone2 = $telephone2;
 
         return $this;
     }

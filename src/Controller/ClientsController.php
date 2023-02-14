@@ -10,16 +10,25 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
 
+
 class ClientsController extends AbstractController
 {
     #[Route('/clients', name: 'app_form_clients')]
-    public function index(Request $request): Response
+    public function index(Request $request, ManagerRegistry $doctrine): Response
     { 
         $client = new Clients();
-        // ...
-
         $form = $this->createForm(AjoutClientType::class, $client);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
 
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($client);
+            $entityManager->flush();
+        
+        return $this->redirect('\clients');
+        }
+        
         return $this->render('clients/index.html.twig', [
             'controller_name' => 'ClientsController',
             'title' => 'Clients',
@@ -27,33 +36,17 @@ class ClientsController extends AbstractController
         ]);
     }
 
+
     #[Route('/addclients', name: 'app_add_clients')]
-    public function createProduct(ManagerRegistry $doctrine): Response
+    public function ajoutClient(ManagerRegistry $doctrine, $client): Response
     {
+
         $entityManager = $doctrine->getManager();
-
-        $client = new Clients();
-        $client->setNom('Keyboard');
-        $client->setprenom('Thierry');
-        $client->setTelephone(6452502184);
-
-        // tell Doctrine you want to (eventually) save the Client (no queries yet)
         $entityManager->persist($client);
-
-        // actually executes the queries (i.e. the INSERT query)
+        $entityManager = $doctrine->getManager();
         $entityManager->flush();
         return new Response('Saved new client with id '.$client->getId());
+
     }
 
-    // public function new(Request $request): Response
-    // {
-    //     $client = new Clients();
-    //     // ...
-
-    //     $form = $this->createForm(AjoutClientType::class, $client);
-
-    //     return $this->render('clients/index.html.twig', [
-    //         'form' => $form,
-    //     ]);
-    // }
 }

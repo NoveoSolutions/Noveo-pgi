@@ -15,8 +15,6 @@ class AdressesController extends AbstractController
 public function index(Request $request): Response
 { 
     $adresse = new Adresses();
-    // ...
-
     $form = $this->createForm(AjoutAdresseType::class, $adresse);
 
     return $this->render('adresses/index.html.twig', [

@@ -23,18 +23,20 @@ class ClientsController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) {
 
+            dd($client);
             //Les actions à effectuer à la soumission du formulaiure 
             $entityManager = $doctrine->getManager();
             $entityManager->persist($client);
             $entityManager->flush();
         
         return $this->redirect('\clients');
+
         }
         
         return $this->render('clients/index.html.twig', [
             'controller_name' => 'ClientsController',
             'title' => 'Clients',
-            'form' => $form->createView()
+            'form' => $form->createView()            
         ]);
     }
 }

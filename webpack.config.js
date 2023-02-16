@@ -78,6 +78,8 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
+    
+    .autoProvidejQuery()
 ;
 
 module.exports = Encore.getWebpackConfig();

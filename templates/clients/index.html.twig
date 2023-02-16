@@ -24,40 +24,34 @@
                     <h4 class="card-title">{{ title }}</h4>
                 </div>
                 <div class="card-body">
-                    Bienvenue sur la première itération de la page client du PGI de Noveo Solutions
+                    Bienvenue sur la première itération 
                     <br /><br />
-                    <h1>
-                    </h1>
-                    <div class="card">
-                    <table class="table table-dark mb-0">
-                            <thead>
-                                <tr>Listing Clients
-                                <br /><br />
-                                </tr>
-                                <th>Nom</th>
-                                <th>Prénom</th>
-                                <th>Tél</th>
-                                <th>Commandes</th>
-                                <th>Adresses</th>
-                            </thead>
-                            <tbody>
-                            <td>Fallas</td>
-                            <td>Yohann</td>
-                            <td>0645522812</td>
-                            <td>HDD45454SD</td>
-                            <td><a href="">1 route du...</a></td>
-                            </tbody>
-                        </table> 
-                    </div> 
-                    
-{{form_start (form)}}
-<button class="btn btn-primary" type="submit">Enregistrer</button>
-{{form_end (form)}}
-
-{% if content|default %}
+                        <div class="card">
+              <div class="card-header">Résultats</div>
+              <div class="card-body">
+                <div class="table-responsive">                   
+                            <table class="table dataTable" id="tableclients">
+                                <thead>
+                                    <tr>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Téléphone</th>
+                                    <th>Commandes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                    </div>
+                </div>               
+                        {{form_start (form)}}
+                            <button class="btn btn-primary" type="submit">Enregistrer</button>
+                        {{form_end (form)}}
+                        {% if content|default %}
                         {{ content|default|raw }}
-                    {% endif %}
-                </div>
+                        {% endif %}
+                    </div>
+              </div>
             </div>
         </section>
     </div>

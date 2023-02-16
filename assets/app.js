@@ -24,3 +24,51 @@ import './mazer/js/bootstrap'
 
 // Symfony-Mazer
 import './symfony-mazer';
+
+
+import 'datatables.net';
+
+
+ // require jQuery normally
+ const $ = require('jquery');
+
+  // create global $ and jQuery variables
+  global.$ = global.jQuery = $;
+
+
+ $.ajax({
+    type: 'GET',
+    url: '/api/clients',
+    
+    dataType: "json",
+    success: function (response) {
+        console.log(response)
+    }
+})
+
+let testConvert = $.ajax({
+    type: 'GET',
+    url: '/api/adresses',
+        
+    dataType: "json",
+    
+   
+})
+
+
+let test = $("#tableclients").DataTable({
+
+    ajax: {
+        url: "api/clients",
+        dataSrc: ''
+    },
+    columns: [
+        {data:'nom'},
+        {data:'prenom'},
+        {data:'telephone'},
+        {data:'commandes'}
+    ]
+    
+});  
+
+console.log(test);

@@ -18,3 +18,6 @@ body .bi::before, [class^=bi-]::before, [class*=" bi-"]::before {
 
 // Mazer CSS
 @import "./mazer";
+
+@import 'datatables.net-bs5/js/dataTables.bootstrap5';
+@import 'datatables.net-bs5/css/dataTables.bootstrap5.css';

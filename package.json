@@ -19,7 +19,6 @@
     "scripts": {
         "dev-server": "encore dev-server",
         "dev": "encore dev",
-        "watch": "encore dev --watch",
         "build": "encore production --progress"
     },
     "dependencies": {
@@ -27,8 +26,10 @@
         "@popperjs/core": "^2.11.6",
         "bootstrap": "^5.2.3",
         "bootstrap-icons": "^1.10.2",
+        "datatables": "^1.10.18",
         "datatables.net": "^1.13.2",
         "datatables.net-bs5": "^1.13.2",
+        "datatables.net-dt": "^1.13.2",
         "feather-icons": "^4.29.0",
         "jquery": "^3.6.3",
         "perfect-scrollbar": "^1.5.5"

@@ -56,8 +56,8 @@ let testConvert = $.ajax({
 })
 
 
-let test = $("#tableclients").DataTable({
-
+$("#tableclients").DataTable({
+    serverside: true,
     ajax: {
         url: "api/clients",
         dataSrc: ''
@@ -67,8 +67,8 @@ let test = $("#tableclients").DataTable({
         {data:'prenom'},
         {data:'telephone'},
         {data:'commandes'}
-    ]
-    
-});  
+    ]    
+});
+ 
 
 console.log(test);

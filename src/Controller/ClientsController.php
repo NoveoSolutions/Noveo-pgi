@@ -23,9 +23,6 @@ class ClientsController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) {
 
-            
-
-            dd($client);
             //Les actions à effectuer à la soumission du formulaiure 
             $entityManager = $doctrine->getManager();
             $entityManager->persist($client);

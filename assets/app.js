@@ -36,39 +36,4 @@ import 'datatables.net';
   global.$ = global.jQuery = $;
 
 
- $.ajax({
-    type: 'GET',
-    url: '/api/clients',
-    
-    dataType: "json",
-    success: function (response) {
-        console.log(response)
-    }
-})
-
-let testConvert = $.ajax({
-    type: 'GET',
-    url: '/api/adresses',
-        
-    dataType: "json",
-    
-   
-})
-
-
-$("#tableclients").DataTable({
-    serverside: true,
-    ajax: {
-        url: "api/clients",
-        dataSrc: ''
-    },
-    columns: [
-        {data:'nom'},
-        {data:'prenom'},
-        {data:'telephone'},
-        {data:'commandes'}
-    ]    
-});
- 
-
-console.log(test);
+  

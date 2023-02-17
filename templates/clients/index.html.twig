@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
+
 <div class="page-heading">                              
         <div class="page-title">
             <div class="row">                   
@@ -43,6 +44,21 @@
                                 </tbody>
                             </table>
                     </div>
+                    <div>
+                    <div class="container-fluid mt-4">
+                        <div class="d-flex flex-row">
+                            <h1 class="me-2">Client</h1>
+                            <div {{ stimulus_controller('modal-form') }}>
+                                <button
+                                    class="btn btn-primary btn-sm"
+                                    data-action="modal-form#openModal"
+                                >Ajouter</button>
+                                {{ include('_modal.html.twig', {
+                                    modalTitle: 'Add a new Product',
+                                }) }}
+                            </div>
+        </div>
+    </div></div>
                 </div>               
                         {{form_start (form)}}
                             <button class="btn btn-primary" type="submit">Enregistrer</button>
@@ -55,4 +71,6 @@
             </div>
         </section>
     </div>
+
+
 {% endblock %}

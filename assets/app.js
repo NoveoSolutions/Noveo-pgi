@@ -35,5 +35,4 @@ import 'datatables.net';
   // create global $ and jQuery variables
   global.$ = global.jQuery = $;
 
-
   

@@ -54,23 +54,45 @@
                                     data-action="modal-form#openModal"
                                 >Ajouter</button>
                                 {{ include('_modal.html.twig', {
-                                    modalTitle: 'Add a new Product',
+                                    modalTitle: 'Ajouter un client',
                                 }) }}
                             </div>
-        </div>
-    </div></div>
-                </div>               
-                        {{form_start (form)}}
-                            <button class="btn btn-primary" type="submit">Enregistrer</button>
-                        {{form_end (form)}}
-                        {% if content|default %}
-                        {{ content|default|raw }}
-                        {% endif %}
-                    </div>
               </div>
             </div>
         </section>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
 
+
+  $(function() {
+    $('#tableclients').DataTable({
+    "processing": true,
+    "serverSide": true,
+    "searching": true,
+    "ajax": {
+    "url": "/clients/tests",
+    "dataSrc":'',
+    "data": function ( d ) {
+    d.start = d.start || 0;
+    d.length = d.length || 50;
+    d.search = d.search;
+    },    
+    },
+    "paging": true,
+    "pageLength": 15,
+    "draw":1,
+    "lengthMenu": [ [10, 15, 25], [10, 15, 25] ],
+    "columns": [
+    { "data": "nom" },
+    { "data": "prenom" },
+    { "data": "telephone" },
+    { "data": "commandes" }
+    ]
+    });
+    });
+
+</script>
 
 {% endblock %}
+

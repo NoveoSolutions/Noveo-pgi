@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Entity\Clients;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Doctrine\ORM\EntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Clients>
@@ -39,7 +38,6 @@ class ClientsRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
 
 //    /**
 //     * @return Clients[] Returns an array of Clients objects

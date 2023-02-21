@@ -18,7 +18,7 @@ class ClientsController extends AbstractController
 
 
     #[Route('/clients', name: 'app_form_clients')]
-    public function index(Request $request, ManagerRegistry $doctrine, EntityManagerInterface $entityManager): Response
+    public function index(Request $request, ManagerRegistry $doctrine): Response
     { 
         
         //création du formulaire clients

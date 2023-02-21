@@ -44,7 +44,6 @@
                                 </tbody>
                             </table>
                     </div>
-                    <div>
                     <div class="container-fluid mt-4">
                         <div class="d-flex flex-row">
                             <h1 class="me-2">Client</h1>
@@ -56,17 +55,19 @@
                                 {{ include('_modal.html.twig', {
                                     modalTitle: 'Ajouter un client',
                                 }) }}
-                            </div>
+                    </div>
               </div>
             </div>
         </section>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script>
 
 
   $(function() {
-    $('#tableclients').DataTable({
+    $('#tableclients').DataTable({  
+
     "processing": true,
     "serverSide": true,
     "searching": true,
@@ -75,14 +76,14 @@
     "dataSrc":'',
     "data": function ( d ) {
     d.start = d.start || 0;
-    d.length = d.length || 50;
+    d.length = d.length || 10;
     d.search = d.search;
     },    
     },
     "paging": true,
-    "pageLength": 15,
-    "draw":1,
-    "lengthMenu": [ [10, 15, 25], [10, 15, 25] ],
+    "pageLength": 5,
+    "draw":true,
+    "lengthMenu": [ [3, 5, 10], ['xs', 'xm', 'xl'] ],
     "columns": [
     { "data": "nom" },
     { "data": "prenom" },

@@ -15,7 +15,9 @@
     {% block stylesfirst %}{% endblock %}
     {{ encore_entry_link_tags('app') }}
     {{ encore_entry_link_tags(encore_entry_link_tag) }}
-    {% block styles %}{% endblock %}
+    {% block styles %}  
+    {% endblock %}
+
 
     <link rel="shortcut icon" href="{{ asset('assets/images/logo/favicon.png') }}" type="image/x-icon">
 </head>
@@ -49,9 +51,7 @@
     {% endif %}
 </div>
 {{ encore_entry_script_tags('app') }}
-{% block js %}
-{% endblock %}
-
-                                    
+{% block js %}{% endblock %}
+<script src="{{ asset('assets/test.js') }}" defer></script>                              
 </body>
 </html>

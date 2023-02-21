@@ -85,12 +85,20 @@ class ClientsController extends AbstractController
         );
        
         
-        $limit = $request->query->get('length');
-        $start = $request->query->get('start');
+        //$limit = $request->query->get('length');
+        //$start = $request->query->get('start');
+
         $order = $columns[$request->query->getInt('order.0.column')];
-        $dir = $request->query->get('order.0.dir');
-        $search = $request->query->get('search.value');
-        
+
+        //$dir = $request->query->get('order.0.dir');
+        //$search = $request->query->get('search.value');
+
+        //version old school de test
+        $start = $_GET['start'];
+        $dir = $_GET['order'][0]['dir'];
+        $limit = $_GET['length'];
+        $search = $_GET['search']['value'];
+       
 
         $qb = $repository->createQueryBuilder('t');
         
@@ -118,8 +126,10 @@ class ClientsController extends AbstractController
             $nestedData["telephone"] = $test->getTelephone();
             $nestedData["commandes"] = $test->getCommandes();
             $data[] = $nestedData;
+
         }
-        
+
+               
         $json_data = array(
             'draw' => $request->query->get('draw'),
             'recordsTotal' => $totalData,
@@ -127,9 +137,8 @@ class ClientsController extends AbstractController
             'data' => $data,
         );
         
-        $test = $data;
-
-        return $this->JSON($test);
+               
+        return $this->JSON($data);
    
 }
 }

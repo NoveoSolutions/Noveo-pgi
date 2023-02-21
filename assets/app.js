@@ -29,6 +29,9 @@ import './symfony-mazer';
 import 'datatables.net';
 
 
+
+
+
  // require jQuery normally
  const $ = require('jquery');
 

@@ -22,47 +22,53 @@
         <section class="section">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">{{ title }}</h4>
+                    <h4 class="card-title">
+                    {{ title }}
+                    </h4>
+                </div> 
+                            <br /><br />
+                                <div class="card">
+                                    <div class="card-header">Résultats</div>
+                                        <div class="card-body">
+                                            <div class="">                   
+                                                <table class="table" id="tableclients">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Nom</th>
+                                                                <th>Prenom</th>
+                                                                <th>Téléphone</th>
+                                                                <th>Commandes</th>
+                                                                <th>Id</th>
+                                                                </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="container-fluid mt-4">
+                                                <div class="d-flex flex-row">
+                                                    <h1 class="me-2">
+                                                    Client
+                                                    </h1>
+                                                    <div {{ stimulus_controller('modal-form') }}>
+                                                        <button class="btn btn-primary btn-sm" data-action="modal-form#openModal">
+                                                        Ajouter</button>
+                                                        {{ include('_modal.html.twig', 
+                                                        {modalTitle: 'Ajouter un client',
+                                                        }) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                 </div>
-                <div class="card-body">
-                    Bienvenue sur la première itération 
-                    <br /><br />
-                        <div class="card">
-              <div class="card-header">Résultats</div>
-              <div class="card-body">
-                <div class="table-responsive">                   
-                            <table class="table" id="tableclients">
-                                <thead>
-                                    <tr>
-                                    <th>Nom</th>
-                                    <th>Prenom</th>
-                                    <th>Téléphone</th>
-                                    <th>Commandes</th>
-                                    <th>Id</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                    </div>
-                    <div class="container-fluid mt-4">
-                        <div class="d-flex flex-row">
-                            <h1 class="me-2">Client</h1>
-                            <div {{ stimulus_controller('modal-form') }}>
-                                <button
-                                    class="btn btn-primary btn-sm"
-                                    data-action="modal-form#openModal"
-                                >Ajouter</button>
-                                {{ include('_modal.html.twig', {
-                                    modalTitle: 'Ajouter un client',
-                                }) }}
-                    </div>
-              </div>
-            </div>
         </section>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
+    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.1/datatables.min.js"></script>
+    
 <script>
 
 
@@ -82,7 +88,7 @@
     d.search = d.search;
     },    
     },
-    "aLengthMenu": [ [3, 5, 15], ['xs', 'xm', 'xl'] ],
+    "aLengthMenu": [ [3, 5, 15], ['3', '5', '15'] ],
     "columns": [
     { "data": "nom" },
     { "data": "prenom" },
@@ -94,6 +100,7 @@
     });
 
 </script>
+
 
 {% endblock %}
 

@@ -20,13 +20,13 @@ import './bootstrap';
 import './mazer/js/app';
 
 // Bootstrap
-import './mazer/js/bootstrap'
+import './mazer/js/bootstrap';
 
 // Symfony-Mazer
 import './symfony-mazer';
 
 
-import 'datatables.net-dt';
 
 
-  
+
+

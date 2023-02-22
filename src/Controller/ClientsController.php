@@ -72,7 +72,7 @@ class ClientsController extends AbstractController
     }
 
     #[Route('/clients/tests', name:'app_test_clients')]
-    public function dataTableLoad(Request $request, EntityManagerInterface $entityManager, ManagerRegistry $doctrine):JSONResponse{
+    public function dataTableAction(Request $request, EntityManagerInterface $entityManager, ManagerRegistry $doctrine):JSONResponse{
         
         
         $repository = $entityManager->getRepository(Clients::class);
@@ -85,20 +85,13 @@ class ClientsController extends AbstractController
         );
        
         
-        //$limit = $request->query->get('length');
-        //$start = $request->query->get('start');
-
         $order = $columns[$request->query->getInt('order.0.column')];
-
-        //$dir = $request->query->get('order.0.dir');
-        //$search = $request->query->get('search.value');
-
-        //version old school de test
+        $order2 = $_GET['order'];
         $start = $_GET['start'];
         $dir = $_GET['order'][0]['dir'];
         $limit = $_GET['length'];
         $search = $_GET['search']['value'];
-       
+
 
         $qb = $repository->createQueryBuilder('t');
         
@@ -107,25 +100,25 @@ class ClientsController extends AbstractController
                 ->setParameter('search', '%' . $search . '%');
         }
 
+      
+        $totalFiltered = count($qb->getQuery()->getResult());
+        
         $qb->orderBy('t.' . $order, $dir)
             ->setFirstResult($start)
             ->setMaxResults($limit);
 
-        $tests = $qb->getQuery()->getResult();
         
+        $tests = $qb->getQuery()->getResult();
+         
 
         $totalData = $repository->count([]);
-        $totalFiltered = $qb->select('COUNT(t)')->getQuery()->getResult();
-        
-        
-            $recordsFiltered = $totalFiltered[0][1];
-        
-        
-        
+
+               
         $data = array();
         
         foreach ($tests as $test) {
             $nestedData = array();
+            $nestedData["id"] = $test->getId();
             $nestedData["nom"] = $test->getNom();
             $nestedData["prenom"] = $test->getPrenom();
             $nestedData["telephone"] = $test->getTelephone();
@@ -134,17 +127,26 @@ class ClientsController extends AbstractController
 
         }
 
-               
+        
         $json_data = array(
             'draw' => $request->query->get('draw'),
             'recordsTotal' => $totalData,
-            'recordsFiltered' => $recordsFiltered,
+            'recordsFiltered' => $totalFiltered,
+            'order' => $order2,
             'data' => $data,
         );
-        
-               
+                      
         return $this->JSON($json_data);
    
 }
 }
 
+
+//$limit = $request->query->get('length');
+//$start = $request->query->get('start');
+
+//$dir = $request->query->get('order.0.dir');
+//$search = $request->query->get('search.value');
+
+//$totalFiltered = $qb->select('COUNT(t)')->getQuery()->getResult();       
+//$recordsFiltered = $totalFiltered[0][1];

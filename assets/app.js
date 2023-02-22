@@ -26,16 +26,7 @@ import './mazer/js/bootstrap'
 import './symfony-mazer';
 
 
-import 'datatables.net';
+import 'datatables.net-dt';
 
-
-
-
-
- // require jQuery normally
- const $ = require('jquery');
-
-  // create global $ and jQuery variables
-  global.$ = global.jQuery = $;
 
   

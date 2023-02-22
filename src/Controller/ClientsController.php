@@ -86,11 +86,12 @@ class ClientsController extends AbstractController
        
         
         $order = $columns[$request->query->getInt('order.0.column')];
-        $order2 = $_GET['order'];
-        $start = $_GET['start'];
+        
+        $start = $request->query->get('start');
         $dir = $_GET['order'][0]['dir'];
-        $limit = $_GET['length'];
+        $limit = $request->query->get('length');
         $search = $_GET['search']['value'];
+        $order2 = $_GET['order'];
 
 
         $qb = $repository->createQueryBuilder('t');
@@ -141,12 +142,12 @@ class ClientsController extends AbstractController
 }
 }
 
-
-//$limit = $request->query->get('length');
-//$start = $request->query->get('start');
-
+//toolsy
 //$dir = $request->query->get('order.0.dir');
 //$search = $request->query->get('search.value');
 
 //$totalFiltered = $qb->select('COUNT(t)')->getQuery()->getResult();       
 //$recordsFiltered = $totalFiltered[0][1];
+
+//toolsc
+//$order2 = $_GET['order'];

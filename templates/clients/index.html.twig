@@ -71,19 +71,18 @@
     "processing": true,
     "serverSide": true,
     "searching": true,
+    "stateSave": true,
+    "paging": true,
     "ajax": {
     "url": "/clients/tests",
-    "dataSrc":'',
     "data": function ( d ) {
     d.start = d.start || 0;
-    d.length = d.length || 10;
+    d.length = d.length || 0;
     d.search = d.search;
     },    
     },
     "paging": true,
-    "pageLength": 5,
-    "draw":true,
-    "lengthMenu": [ [3, 5, 10], ['xs', 'xm', 'xl'] ],
+    "aLengthMenu": [ [3, 5, 15], ['xs', 'xm', 'xl'] ],
     "columns": [
     { "data": "nom" },
     { "data": "prenom" },

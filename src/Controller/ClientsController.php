@@ -116,7 +116,12 @@ class ClientsController extends AbstractController
 
         $totalData = $repository->count([]);
         $totalFiltered = $qb->select('COUNT(t)')->getQuery()->getResult();
-
+        
+        
+            $recordsFiltered = $totalFiltered[0][1];
+        
+        
+        
         $data = array();
         
         foreach ($tests as $test) {
@@ -133,12 +138,12 @@ class ClientsController extends AbstractController
         $json_data = array(
             'draw' => $request->query->get('draw'),
             'recordsTotal' => $totalData,
-            'recordsFiltered' => $totalFiltered,
+            'recordsFiltered' => $recordsFiltered,
             'data' => $data,
         );
         
                
-        return $this->JSON($data);
+        return $this->JSON($json_data);
    
 }
 }

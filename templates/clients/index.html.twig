@@ -83,9 +83,17 @@
     { "data": "id" }
     ]
     });
+
+  $('#tableclients').on( 'click', 'tbody tr', function () {
+
+            $.ajax ({
+                url:'api/clients/162',
+                method: "DELETE"
+            });
+            $('#tableclients').DataTable().ajax.reload();
     });
+});
 
 </script>
-
 {% endblock %}
 

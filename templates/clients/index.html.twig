@@ -92,11 +92,12 @@ var table = $(function() {
 
             var test = $(this).closest('td').text();
 
-
             $.ajax ({
                 url:'api/clients/'+ test +'',
                 method: "DELETE"
             });   
+
+            window.alert('Le client '+ test + ' à bien été supprimé');
 
             $('#tableclients').DataTable().ajax.reload();        
     });

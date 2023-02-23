@@ -47,7 +47,7 @@
                     </thead>
                     <tbody>
                     </tbody>
-                </table>              
+                </table>             
             </div>                        
     </div>   
 </section>
@@ -58,41 +58,49 @@
 <script>
 
 
-  $(function() {
+var table = $(function() {
     $('#tableclients').DataTable({  
 
-    "processing": true,
-    "serverSide": true,
-    "searching": true,
-    "stateSave": true,
-    "paging": true,
-    "ajax": {
-    "url": "/clients/tests",
-    "data": function ( d ) {
+    processing: true,
+    serverSide: true,
+    searching: true,
+    stateSave: true,
+    paging: true,
+    ajax: {
+    url: "/clients/tests",
+    data: function ( d ) {
     d.start = d.start || 0;
     d.length = d.length || 0;
     d.search = d.search;
     },    
     },
-    "aLengthMenu": [ [3, 5, 15], ['3', '5', '15'] ],
-    "columns": [
-    { "data": "nom" },
-    { "data": "prenom" },
-    { "data": "telephone" },
-    { "data": "commandes" },
-    { "data": "id" }
+    aLengthMenu: [ [3, 5, 15], ['3', '5', '15'] ],
+    columns: [
+    { data: "nom" },
+    { data: "prenom" },
+    { data: "telephone" },
+    { data: "commandes" },
+    { data: "id" }
     ]
     });
 
-  $('#tableclients').on( 'click', 'tbody tr', function () {
+});
+   
+
+
+    $('#tableclients').on( 'click', 'td', function () {
+
+            var test = $(this).closest('td').text();
+
+            console.log(test);
 
             $.ajax ({
-                url:'api/clients/162',
+                url:'api/clients/'+ test +'',
                 method: "DELETE"
-            });
-            $('#tableclients').DataTable().ajax.reload();
+            });   
+
+            $('#tableclients').DataTable().ajax.reload();        
     });
-});
 
 </script>
 {% endblock %}

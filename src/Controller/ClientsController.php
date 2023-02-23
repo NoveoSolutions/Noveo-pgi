@@ -81,7 +81,7 @@ class ClientsController extends AbstractController
             0 => 'nom',
             1 => 'prenom',
             2 => 'telephone',
-            3 => 'commandes',          
+            3 => 'commandes',         
         );
        
         

@@ -20,21 +20,19 @@
             </div>
         </div>
 </div>
-<section class="section">
+<section class="section" {{ stimulus_controller('modal-form') }}>
     <div class="card">
         <div class="card-header">
-            <div class="dropdown" >
                 <button class="btn btn-primary dropdown-toggle me-1" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 Options
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"  data-popper-placement="bottom-start" {{ stimulus_controller('modal-form') }}>                            
-                            <a class="dropdown-item" href="#" data-action="modal-form#openModal">
-                            Ajouter</a>
-                            {{ include('_modal.html.twig', 
-                            {modalTitle: 'Ajouter un client',
-                            }) }}
-                </div>
-            </div>         
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"  data-popper-placement="bottom-start">                            
+                            <button class="dropdown-item" data-action="modal-form#openModal">
+                            Ajouter</button>
+                        </div>
+                        {{ include('_modal.html.twig', 
+        {modalTitle: 'Ajouter un client',
+        }) }}
         </div>    
             <div class="card-body ">                   
                 <table class="table " id="tableclients">
@@ -50,23 +48,10 @@
                     <tbody>
                     </tbody>
                 </table>              
-                <div class="container-fluid mt-4">
-                    <div class="d-flex flex-row">
-                        <h1 class="me-2">
-                        Client
-                        </h1>
-                        <div {{ stimulus_controller('modal-form') }}>
-                            <button class="dropdown-item" data-action="modal-form#openModal">
-                            Ajouter</button>
-                            {{ include('_modal.html.twig', 
-                            {modalTitle: 'Ajouter un client',
-                            }) }}
-                        </div>
-                    </div>
-                </div>
             </div>                        
-    </div>
+    </div>   
 </section>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script src="https://cdn.datatables.net/v/bs5/dt-1.13.1/datatables.min.js"></script>   
 <script src="assets/js/bootstrap.js"></script>

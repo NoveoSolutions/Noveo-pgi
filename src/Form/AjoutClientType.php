@@ -7,6 +7,8 @@ use App\Entity\Adresses;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 
 class AjoutClientType extends AbstractType
 {
@@ -18,6 +20,7 @@ class AjoutClientType extends AbstractType
             ->add('telephone')
             ->add('telephone2')
             ->add('commandes')
+            ->add('Enregistrer', SubmitType::class)
         ;
     }
 

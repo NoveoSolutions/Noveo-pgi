@@ -23,11 +23,11 @@
 <section class="section">
     <div class="card">
         <div class="card-header">
-            <div class="dropdown mb-1" {{ stimulus_controller('modal-form') }}>
-                <button class="btn btn-primary dropdown-toggle me-1 show" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <div class="dropdown" >
+                <button class="btn btn-primary dropdown-toggle me-1" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 Options
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"  data-popper-placement="bottom-start" >
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"  data-popper-placement="bottom-start" {{ stimulus_controller('modal-form') }}>                            
                             <a class="dropdown-item" href="#" data-action="modal-form#openModal">
                             Ajouter</a>
                             {{ include('_modal.html.twig', 

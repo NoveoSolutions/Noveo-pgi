@@ -17,6 +17,7 @@ class AjoutAdresseType extends AbstractType
             ->add('voierue')
             ->add('ville')
             ->add('codepostal')
+            ->add('Enregistrer', SubmitType::class)
         ;
     }
 

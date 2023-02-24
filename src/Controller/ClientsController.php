@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Clients;
 use App\Form\AjoutClientType;
+use Doctrine\ORM\Cache\Region;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -44,7 +45,9 @@ class ClientsController extends AbstractController
         ]);
     }
 
-    #[Route('/clients_modal', name: 'app_form_modal_clients')]
+
+
+    #[Route('/clients_modal_form', name: 'app_form_modal_clients')]
     public function index_modal(Request $request, ManagerRegistry $doctrine): Response
     { 
 
@@ -64,14 +67,15 @@ class ClientsController extends AbstractController
 
         }
         
-        return $this->render('clients/index_modal.html.twig', [
+        return $this->render('clients/index_modal_form.html.twig', [
             'controller_name' => 'ClientsController',
             'title' => 'Ajout client',
             'form' => $form->createView()            
         ]);
     }
 
-    #[Route('/clients/tests', name:'app_test_clients')]
+
+    #[Route('/clients/datatables', name:'app_test_clients')]
     public function dataTableAction(Request $request, EntityManagerInterface $entityManager, ManagerRegistry $doctrine):JSONResponse{
         
         
@@ -81,7 +85,7 @@ class ClientsController extends AbstractController
             0 => 'nom',
             1 => 'prenom',
             2 => 'telephone',
-            3 => 'commandes',         
+            3 => 'commandes',
         );
        
         
@@ -140,6 +144,8 @@ class ClientsController extends AbstractController
         return $this->JSON($json_data);
    
 }
+
+  
 }
 
 //toolsy

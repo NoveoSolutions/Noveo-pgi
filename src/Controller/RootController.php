@@ -27,6 +27,7 @@ class RootController extends AbstractController
 			'content' => '<a class="btn btn-info" href="/addclients">Enregistrer</a>'
 		]);
 	}
+
 	
 	#[Route('/menu1_submenu1_new', name: 'app_menu1.submenu1.new')]
 	public function menu1Submenu1New(): Response

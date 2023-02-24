@@ -43,14 +43,52 @@
                                 <th>Téléphone</th>
                                 <th>Commandes</th>
                                 <th>Id</th>
+                                <th>Consulter</th>
+                                <th>Modifier</th>
+                                <th>Supprimer</th>
                                 </tr>
                     </thead>
                     <tbody>
                     </tbody>
                 </table>             
             </div>                        
-    </div>   
+    </div> 
+    <!-- Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Modifier client</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       {{form (form)}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Supprimer la fiche client</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h6>Êtes vous certains de vouloir Supprimer cet élément?</h6>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-primary">Confirmer</button>
+      </div>
+    </div>
+  </div>
+</div>
 </section>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script src="https://cdn.datatables.net/v/bs5/dt-1.13.1/datatables.min.js"></script>   
@@ -67,7 +105,7 @@ var table = $(function() {
     stateSave: true,
     paging: true,
     ajax: {
-    url: "/clients/tests",
+    url: "/clients/datatables",
     data: function ( d ) {
     d.start = d.start || 0;
     d.length = d.length || 0;
@@ -80,28 +118,40 @@ var table = $(function() {
     { data: "prenom" },
     { data: "telephone" },
     { data: "commandes" },
-    { data: "id" }
+    { data: "id" },
+    { data: null, title: 'Consulter',
+     "render": function (data, type, row, meta) {
+        return ' <button type="button" class="btn btn-primary"><i class="bi bi-search"></</button>' 
+        } }, 
+    { data: null, title: 'Modifier',
+    "render": function (data, type, row, meta) {
+    return ' <button type="button" data-bs-toggle="modal" data-bs-target="#editModal" class="btn btn-success"><i class="bi bi-pen"></</button>' 
+    } },
+    { data: null, title: 'Supprimer',
+     "render": function (data, type, row, meta) {
+        return '<button value=data.id  type="button" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger"><i class="bi bi-trash"></</button>' 
+        } }       
     ]
     });
+   
+  // $('#tableclients').on( 'click', 'td', function () {
+
+//            var test = $(this).closest('td').text();
+
+  //          $.ajax ({
+    //            url:'api/clients/'+ test +'',
+      //          method: "DELETE"
+        //    });   
+//
+  //          window.alert('Le client '+ test + ' à bien été supprimé');
+//
+  //          $('#tableclients').DataTable().ajax.reload();        
+    //});
+   
 
 });
    
-
-
-    $('#tableclients').on( 'click', 'td', function () {
-
-            var test = $(this).closest('td').text();
-
-            $.ajax ({
-                url:'api/clients/'+ test +'',
-                method: "DELETE"
-            });   
-
-            window.alert('Le client '+ test + ' à bien été supprimé');
-
-            $('#tableclients').DataTable().ajax.reload();        
-    });
-
+  
 </script>
 {% endblock %}
 

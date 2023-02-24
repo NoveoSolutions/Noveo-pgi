@@ -150,7 +150,7 @@ class ClientsController extends AbstractController
 
 //toolsy
 //$dir = $request->query->get('order.0.dir');
-//$search = $request->query->get('search.value');
+//$search = $request->query->get(['search'].['value']);
 
 //$totalFiltered = $qb->select('COUNT(t)')->getQuery()->getResult();       
 //$recordsFiltered = $totalFiltered[0][1];

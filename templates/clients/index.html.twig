@@ -144,15 +144,15 @@ var table = $(function() {
     { data: "telephone" },
     { data: "commandes" },
     { data: "id" },
-    { data: null, title: 'Consulter',
+    { data: null, title: 'Consulter', width: '5%',
      "render": function (data, type, row, meta) {
         return ' <button type="button" data-bs-toggle="modal" data-bs-target="#displayModal" class="btn btn-primary"><i class="bi bi-search"></</button>' 
         } }, 
-    { data: null, title: 'Modifier',
+    { data: null, title: 'Modifier', width: '5%',
     "render": function (data, type, row, meta) {
     return ' <button type="button" data-bs-toggle="modal" data-bs-target="#editModal" class="btn btn-success"><i class="bi bi-pen"></</button>' 
     } },
-    { data: null, title: 'Supprimer',
+    { data: null, title: 'Supprimer', width: '5%',
      "render": function (data, type, row, meta) {
         return '<button  type="button" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger"><i class="bi bi-trash"></</button>' 
         } }       

@@ -52,9 +52,29 @@
                     </tbody>
                 </table>             
             </div>                        
-    </div> 
-    <!-- Modal -->
-    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    </div>
+
+<!-- Modal 1 -->
+<div class="modal fade" id="displayModal" tabindex="-1" aria-labelledby="displayModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="displayModalLabel">Fiche client</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        <a class="btn btn-primary" href="http://127.0.0.1:8000/clients">Consulter</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Modal 2 -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -70,7 +90,10 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+
+<!-- Modal 3 -->
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -82,11 +105,13 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-        <button type="button" class="btn btn-primary">Confirmer</button>
+        <button id="deleteclient" type="button" class="btn btn-primary" data-bs-dismiss="modal">Confirmer</button>
       </div>
     </div>
   </div>
 </div>
+
+
 </section>
 
 
@@ -121,7 +146,7 @@ var table = $(function() {
     { data: "id" },
     { data: null, title: 'Consulter',
      "render": function (data, type, row, meta) {
-        return ' <button type="button" class="btn btn-primary"><i class="bi bi-search"></</button>' 
+        return ' <button type="button" data-bs-toggle="modal" data-bs-target="#displayModal" class="btn btn-primary"><i class="bi bi-search"></</button>' 
         } }, 
     { data: null, title: 'Modifier',
     "render": function (data, type, row, meta) {
@@ -129,26 +154,32 @@ var table = $(function() {
     } },
     { data: null, title: 'Supprimer',
      "render": function (data, type, row, meta) {
-        return '<button value=data.id  type="button" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger"><i class="bi bi-trash"></</button>' 
+        return '<button  type="button" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger"><i class="bi bi-trash"></</button>' 
         } }       
     ]
     });
    
-  // $('#tableclients').on( 'click', 'td', function () {
+   $('#deleteclient').on( 'click', function () {
 
-//            var test = $(this).closest('td').text();
 
-  //          $.ajax ({
-    //            url:'api/clients/'+ test +'',
-      //          method: "DELETE"
-        //    });   
-//
-  //          window.alert('Le client '+ test + ' à bien été supprimé');
-//
-  //          $('#tableclients').DataTable().ajax.reload();        
-    //});
+            $.ajax ({
+                url:'api/clients/{id}',
+                method: "DELETE"
+            });   
+
+            $('#tableclients').DataTable().ajax.reload();        
+    });
    
+    $('#updateclient').on( 'click', function () {
 
+
+            $.ajax ({
+                url:'api/clients/{id}',
+                method: "PATCH"
+            });   
+
+            $('#tableclients').DataTable().ajax.reload();        
+    });
 });
    
   

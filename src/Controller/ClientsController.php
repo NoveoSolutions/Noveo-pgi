@@ -145,6 +145,17 @@ class ClientsController extends AbstractController
    
 }
 
+    #[Route('/client/id', name: 'app_client_id')]
+    public function indexClient(): Response
+    { 
+        
+        return $this->render('clients/index.client.html.twig', [
+            'controller_name' => 'ClientsController',
+            'title' => 'Client',
+                
+        ]);
+    }
+
   
 }
 

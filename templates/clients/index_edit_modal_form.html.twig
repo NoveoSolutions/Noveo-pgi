@@ -1,0 +1,7 @@
+
+    {{form_start (form)}}
+    {{form_widget (form, { 'label': 'Click me' }) }}
+    {{form_end (form)}}
+    {% if content|default %}
+    {{ content|default|raw }}
+    {% endif %}

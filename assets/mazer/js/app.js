@@ -9,5 +9,5 @@ require("./components/dark")
 
 require("./mazer")
 
-//require("./pages/jquery")
+
 

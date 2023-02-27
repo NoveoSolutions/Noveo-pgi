@@ -25,6 +25,8 @@ import './mazer/js/bootstrap';
 // Symfony-Mazer
 import './symfony-mazer';
 
+//fontawesome
+import './css/pages/fontawesome.css';
 
 
 

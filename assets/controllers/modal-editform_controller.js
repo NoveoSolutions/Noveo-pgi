@@ -11,7 +11,7 @@ export default class extends Controller {
         
         const modal = new Modal(this.modalTarget);
         modal.show();
-        this.modalBodyTarget.innerHTML = await $.ajax(this.formUrlValue);       
+        this.modalBodyTarget.innerHTML = await $.ajax(this.formUrlValue);
     }
     
 }

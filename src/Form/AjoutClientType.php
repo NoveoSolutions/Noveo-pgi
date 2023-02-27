@@ -18,7 +18,6 @@ class AjoutClientType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('telephone')
-            ->add('telephone2')
             ->add('commandes')
             ->add('Enregistrer', SubmitType::class)
         ;

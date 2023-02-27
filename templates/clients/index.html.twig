@@ -69,7 +69,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-            <a class="btn btn-primary" href="http://127.0.0.1:8000/client/id">Consulter</a>
+            <a class="btn btn-primary" href="http://127.0.0.1:8000/client/22">Consulter</a>
           </div>
         </div>
       </div>
@@ -167,19 +167,9 @@ var table = $(function() {
                 url:'api/clients/{id}',
                 method: "GET"
             });  
-            console.log(test)         
+                  
     });
 
-   $('#deleteclient').on( 'click', function () {
-
-
-            $.ajax ({
-                url:'api/clients/{id}',
-                method: "DELETE"
-            });   
-
-            $('#tableclients').DataTable().ajax.reload();        
-    });
    
     $('#updateclient').on( 'click', function () {
 
@@ -187,6 +177,17 @@ var table = $(function() {
             $.ajax ({
                 url:'api/clients/{id}',
                 method: "PATCH"
+            });   
+
+            $('#tableclients').DataTable().ajax.reload();        
+    });
+
+     $('#deleteclient').on( 'click', function () {
+
+
+            $.ajax ({
+                url:'api/clients/{id}',
+                method: "DELETE"
             });   
 
             $('#tableclients').DataTable().ajax.reload();        

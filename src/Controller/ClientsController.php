@@ -45,8 +45,6 @@ class ClientsController extends AbstractController
         ]);
     }
 
-
-
     #[Route('/clients_modal_form', name: 'app_form_modal_clients')]
     public function index_modal(Request $request, ManagerRegistry $doctrine): Response
     { 
@@ -66,7 +64,8 @@ class ClientsController extends AbstractController
         return $this->redirect('/clients_modal');
 
         }
-        
+
+             
         return $this->render('clients/index_modal_form.html.twig', [
             'controller_name' => 'ClientsController',
             'title' => 'Ajout client',
@@ -74,6 +73,30 @@ class ClientsController extends AbstractController
         ]);
     }
 
+    #[Route('/clients_modal_form/{id}/edit', name: 'app_form_edit_modal_clients')]
+    public function index_edit_modal(clients $client, Request $request, ManagerRegistry $doctrine): Response
+    { 
+
+        $form = $this->createForm(AjoutClientType::class, $client);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $client = $form->getData();
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($client);
+            $entityManager->flush();
+        
+        return $this->redirect('/clients_modal');
+
+        }
+        
+        return $this->render('clients/index_edit_modal_form.html.twig', [
+            'controller_name' => 'ClientsController',
+            'title' => 'Modification client',
+            'form' => $form->createView()            
+        ]);
+    }
 
     #[Route('/clients/datatables', name:'app_test_clients')]
     public function dataTableAction(Request $request, EntityManagerInterface $entityManager, ManagerRegistry $doctrine):JSONResponse{

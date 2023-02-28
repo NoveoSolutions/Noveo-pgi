@@ -5,7 +5,7 @@ import $ from 'jquery';
 export default class extends Controller {
     static targets = ['modal', 'modalBody'];
     static values = {
-        formUrl: "/clients_modal_form/10/edit",
+        formUrl: "/clients_modal_form/154/edit",
     }
     async openModal(event) {
         

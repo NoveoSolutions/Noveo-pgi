@@ -76,7 +76,7 @@ class ClientsController extends AbstractController
     #[Route('/clients_modal_form/{id}/edit', name: 'app_form_edit_modal_clients')]
     public function index_edit_modal(clients $client, Request $request, ManagerRegistry $doctrine): Response
     { 
-
+        
         $form = $this->createForm(AjoutClientType::class, $client);
         $form->handleRequest($request);
         
@@ -151,6 +151,8 @@ class ClientsController extends AbstractController
             $nestedData["prenom"] = $test->getPrenom();
             $nestedData["telephone"] = $test->getTelephone();
             $nestedData["commandes"] = $test->getCommandes();
+            $nestedData["consulter"] = '<button id="displayclient" type="button" data-id="'.$test->getId().'"" data-bs-target="#displayModal" class="open-modal_displayclient btn btn-primary"><i class="bi bi-search"></</button>';
+            $nestedData["supprimer"] = '<button  type="button" data-bs-toggle="modal" data-id="'.$test->getId().'" data-bs-target="#deleteModal" class="open-modal_deleteclient btn btn-danger" data-id=><i class="bi bi-trash"></</button>';
             $data[] = $nestedData;
 
         }

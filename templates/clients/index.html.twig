@@ -23,16 +23,18 @@
 <section class="section" >
     <div class="card">
         <div class="card-header">
+        <div class="dropdown">
                  <button class="btn btn-primary dropdown-toggle me-1" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Options
                 </button>
-                <div class="dropdown" aria-labelledby="dropdownMenuButton"  data-popper-placement="bottom-start">                            
-                            <button class="dropdown-item" data-action="modal-form#openModal">
-                            Ajouter un client</button>
-                        </div>
-                            {{ include('_modal.html.twig', 
-        {modalTitle: 'Ajouter un client',
-        }) }}                       
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"  data-popper-placement="bottom-start">                            
+                                    <li><a class="dropdown-item" data-action="modal-form#openModal">
+                                    Ajouter un client</a></li>
+                                </ul>
+                                    {{ include('_modal.html.twig', 
+                {modalTitle: 'Ajouter un client',
+                }) }}
+        </div>                       
         </div>    
             <div class="card-body ">                   
                 <table class="table " id="tableclients">
@@ -69,7 +71,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-            <a class="btn btn-primary" href="http://127.0.0.1:8000/client/22">Consulter</a>
+            <a class="btn btn-primary" href="http://127.0.0.1:8000/client/154">Consulter</a>
           </div>
         </div>
       </div>
@@ -85,7 +87,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            ... 
+            {{form (form)}}
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
@@ -143,36 +145,49 @@ var table = $(function() {
     { data: "telephone" },
     { data: "commandes" },
     { data: "id" },
-    { data: null, title: 'Consulter', width: '5%',
+    { data: "consulter" },
+    /*{ data: null, title: 'Consulter', width: '5%',
      "render": function (data, type, row, meta) {
         return '<button id="displayclient" type="button" data-bs-toggle="modal" data-bs-target="#displayModal" class="btn btn-primary"><i class="bi bi-search"></</button>' 
-        } }, 
+        } }, */
     { data: null, title: 'Modifier', width: '5%',
     "render": function (data, type, row, meta) {
     return '<button type="button" data-bs-toggle="modal" data-bs-target="#editModal" class="btn btn-success"><i class="bi bi-pen"></button>' 
     } },
-    { data: null, title: 'Supprimer', width: '5%',
+   /* { data: null, title: 'Supprimer', width: '5%',
      "render": function (data, type, row, meta) {
-        return '<button  type="button" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger"><i class="bi bi-trash"></</button>' 
-        } }       
+        return '<button  type="button" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger" data-id=><i class="bi bi-trash"></</button>' 
+        } }  */  
+     { data: "supprimer" }   
     ]
     });
 
+$(document).on("click", ".open-modal_deleteclient", function () {
+  $('#deleteclient').attr('data-id', $(this).data('id'));
 
-   $('#displayclient').on( 'click', function () {
+console.log($(this).data('id'));
+
 
             $.ajax ({
                 url:'api/clients/{id}',
                 method: "GET"
-            });  
-            console.log(test)         
+            }); 
+                
     });
+
+
+$(document).on("click", ".open-modal_displayclient", function () {
+   $('#displayclient').attr( 'data-id', $(this).data('id'));
+  
+           window.location="/client/"+ $(this).data('id');                  
+    });
+
 
    $('#deleteclient').on( 'click', function () {
 
-
+    
             $.ajax ({
-                url:'api/clients/{id}',
+                url:'api/clients/'+$(this).data('id'),
                 method: "DELETE"
             });   
 

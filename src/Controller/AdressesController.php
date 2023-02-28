@@ -37,4 +37,29 @@ public function index(Request $request, ManagerRegistry $doctrine): Response
         'form' => $form->createView()
     ]);
   }
+
+  #[Route('/adresses/{id}/edit', name: 'app_edit_adresses')]
+    public function index_edit_modal(Adresses $adresse, Request $request, ManagerRegistry $doctrine): Response
+    { 
+        
+        $form = $this->createForm(AjoutAdresseType::class, $adresse);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $adresse = $form->getData();
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($adresse);
+            $entityManager->flush();
+        
+        return $this->redirect('/adresses');
+
+        }
+        
+        return $this->render('clients/index_edit_modal_form.html.twig', [
+            'controller_name' => 'ClientsController',
+            'title' => 'Modification client',
+            'form' => $form->createView()            
+        ]);
+    }
 }

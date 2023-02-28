@@ -109,8 +109,9 @@
             <h6>Êtes vous certains de vouloir Supprimer cet élément?</h6>
           </div>
           <div class="modal-footer">
+          <input type="hidden" id="iddeinputhidden"/>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-            <button id="deleteclient" type="button" class="btn btn-primary" data-bs-dismiss="modal">Confirmer</button>
+            <button id="deleteclient2" type="button" class="btn btn-primary" data-bs-dismiss="modal">Confirmer</button>
           </div>
         </div>
       </div>
@@ -162,30 +163,34 @@ var table = $(function() {
     ]
     });
 
-$(document).on("click", ".open-modal_deleteclient", function () {
-  $('#deleteclient').attr('data-id', $(this).data('id'));
+  /*  $('.open-modal_deleteclient').on( 'click', function () {
+ $('#deleteclient').attr('data-id', $(this).data('id'));
+    });*/
+$(document).on("click", ".open-modal_deleteclient", function () { 
+  $('#iddeinputhidden').val($(this).data('id'));
+ // $('#deleteclient2').attr('data-id', $(this).data('id'));
+// $('#deleteclient2').load();
+ //  console.log('ok');
+          
+    });
 
-console.log($(this).data('id'));
 
 
-            $.ajax ({
-                url:'api/clients/{id}',
-                method: "GET"
-            }); 
+$(document).on("click", "#deleteclient2", function () {
+ // console.log( $(this).data('id'));
+    
+   $.ajax ({
+                url:'api/clients/'+$('#iddeinputhidden').val(),
+                method: "DELETE"
+            });   
+
+           $('#tableclients').DataTable().ajax.reload();   
                 
     });
 
+ /*  $('#deleteclient').on( 'click', function () {
 
-$(document).on("click", ".open-modal_displayclient", function () {
-   $('#displayclient').attr( 'data-id', $(this).data('id'));
-  
-           window.location="/client/"+ $(this).data('id');                  
-    });
-
-
-   $('#deleteclient').on( 'click', function () {
-
-    
+    alert($(this).data('id'));
             $.ajax ({
                 url:'api/clients/'+$(this).data('id'),
                 method: "DELETE"
@@ -193,7 +198,7 @@ $(document).on("click", ".open-modal_displayclient", function () {
 
             $('#tableclients').DataTable().ajax.reload();        
     });
-   
+   */
     $('#updateclient').on( 'click', function () {
 
 

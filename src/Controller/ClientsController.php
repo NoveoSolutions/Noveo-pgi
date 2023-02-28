@@ -151,7 +151,7 @@ class ClientsController extends AbstractController
             $nestedData["prenom"] = $test->getPrenom();
             $nestedData["telephone"] = $test->getTelephone();
             $nestedData["commandes"] = $test->getCommandes();
-            $nestedData["consulter"] = '<button id="displayclient" type="button" data-id="'.$test->getId().'"" data-bs-target="#displayModal" class="open-modal_displayclient btn btn-primary"><i class="bi bi-search"></</button>';
+            $nestedData["consulter"] = '<a href="/client/'.$test->getId().'"><i class="bi bi-search"/></a>';
             $nestedData["supprimer"] = '<button  type="button" data-bs-toggle="modal" data-id="'.$test->getId().'" data-bs-target="#deleteModal" class="open-modal_deleteclient btn btn-danger" data-id=><i class="bi bi-trash"></</button>';
             $data[] = $nestedData;
 

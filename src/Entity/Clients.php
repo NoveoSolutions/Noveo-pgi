@@ -7,9 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
 
 #[ORM\Entity(repositoryClass: ClientsRepository::class)]
 #[ApiResource]
+#[Delete(security: "is_granted('ROLE_USER')")]
 class Clients
 {
     #[ORM\Id]

@@ -19,18 +19,32 @@
             </div>
         </div>
 </div>
-<section class="section" {{ stimulus_controller('modal-form') }}>
-    <div class="card">
-        <div class="card-header">
-                 <button class="btn btn-primary dropdown-toggle me-1" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Options
-                </button>
-                <div class="dropdown" aria-labelledby="dropdownMenuButton"  data-popper-placement="bottom-start">                            
+<section class="section" {{ stimulus_controller('modal-form',{formUrl: path('app_form_modal_adresses')}) }} data-action="hidden.bs.modal->modal-form#modalHidden">
+
+                <div class="card-body" aria-labelledby="dropdownMenuButton"  data-popper-placement="bottom-start">                            
+                            <button class="dropdown-item" data-action="modal-form#openModal">
+                            Ajouter une adresse</button>
+                        </div>
+                            {{ include('_modal.html.twig', 
+        {modalTitle: 'Ajouter une adresse',
+        }) }}
+</section>
+<section class="section" {{ stimulus_controller('modal-form',{formUrl: path('app_form_modal_clients')}) }}>
+                <div class="card-body" aria-labelledby="dropdownMenuButton"  data-popper-placement="bottom-start">                            
                             <button class="dropdown-item" data-action="modal-form#openModal">
                             Ajouter un client</button>
                         </div>
                             {{ include('_modal.html.twig', 
-        {modalTitle: 'Modifier client',
+        {modalTitle: 'Ajouter client',
+        }) }}
+</section>
+<section class="section" {{ stimulus_controller('modal-form',{formUrl: path('app_test_new')}) }}>
+                <div class="card-body" aria-labelledby="dropdownMenuButton"  data-popper-placement="bottom-start">                            
+                            <button class="dropdown-item" data-action="modal-form#openModal">
+                            Ajouter test</button>
+                        </div>
+                            {{ include('_modal.html.twig', 
+        {modalTitle: 'Ajouter test',
         }) }}
 </section>
             <div class="card-body ">                   

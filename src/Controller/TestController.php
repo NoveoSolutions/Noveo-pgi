@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/test')]
 class TestController extends AbstractController
@@ -31,13 +32,22 @@ class TestController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $testRepository->save($test, true);
 
+            if ($request->isXmlHttpRequest()) {
+                return new Response(null, 204);
+            }
+
             return $this->redirectToRoute('app_test_index', [], Response::HTTP_SEE_OTHER);
         }
+        
+        $template = $request->isXmlHttpRequest() ? '_form.html.twig' : 'new.html.twig';
 
-        return $this->renderForm('test/new.html.twig', [
+        return $this->render('test/' .$template, [
             'test' => $test,
             'form' => $form,
-        ]);
+        ], new Response(
+            null,
+            $form->isSubmitted() && !$form->isValid() ? 422 : 200,
+        ));
     }
 
     #[Route('/{id}', name: 'app_test_show', methods: ['GET'])]
@@ -47,7 +57,8 @@ class TestController extends AbstractController
             'test' => $test,
         ]);
     }
-
+    
+    #[IsGranted('ROLE_USER')]
     #[Route('/{id}/edit', name: 'app_test_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Test $test, TestRepository $testRepository): Response
     {

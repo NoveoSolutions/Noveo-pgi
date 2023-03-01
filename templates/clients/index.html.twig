@@ -20,16 +20,16 @@
             </div>
         </div>
 </div>
-<section class="section" >
+<section class="section" {{ stimulus_controller('modal-form',{formUrl: path('app_form_modal_clients')}) }} >
     <div class="card">
         <div class="card-header">
         <div class="dropdown">
                  <button class="btn btn-primary dropdown-toggle me-1" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Options
                 </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton"  data-popper-placement="bottom-start">                            
-                                    <li><a class="dropdown-item" data-action="modal-form#openModal">
-                                    Ajouter un client</a></li>
+                        <ul class="dropdown" aria-labelledby="dropdownMenuButton"  data-popper-placement="bottom-start">                            
+                                    <button class="dropdown" data-action="modal-form#openModal">
+                                    Ajouter un client</button>
                                 </ul>
                                     {{ include('_modal.html.twig', 
                 {modalTitle: 'Ajouter un client',
@@ -87,7 +87,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            {{form (form)}}
+            
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
@@ -167,6 +167,21 @@ var table = $(function() {
  $('#deleteclient').attr('data-id', $(this).data('id'));
     });*/
 $(document).on("click", ".open-modal_deleteclient", function () { 
+
+let test = {"nom":"Macaron"}
+
+    $.ajax ({
+            type:"PUT",
+            url:'api/clients/222',
+            contentType: "application/json",
+            data: JSON.stringify(test),
+            success: function(){
+              var msg = "update succesful";
+              console.log(msg);
+            },               
+            });   
+
+
   $('#iddeinputhidden').val($(this).data('id'));
  // $('#deleteclient2').attr('data-id', $(this).data('id'));
 // $('#deleteclient2').load();
@@ -202,10 +217,13 @@ $(document).on("click", "#deleteclient2", function () {
     $('#updateclient').on( 'click', function () {
 
 
-            $.ajax ({
-                url:'api/clients/{id}',
+           /* $.ajax ({
+              data: {
+              "telephone": 5
+            }
+                url:'api/clients/222',
                 method: "PATCH"
-            });   
+            });  */ 
 
             $('#tableclients').DataTable().ajax.reload();        
     });

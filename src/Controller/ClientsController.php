@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 
 class ClientsController extends AbstractController
@@ -60,6 +61,10 @@ class ClientsController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($client);
             $entityManager->flush();
+
+            if ($request->isXmlHttpRequest()) {
+                return new Response(null, 204);
+            }
         
         return $this->redirect('/clients_modal');
 
@@ -70,7 +75,10 @@ class ClientsController extends AbstractController
             'controller_name' => 'ClientsController',
             'title' => 'Ajout client',
             'form' => $form->createView()            
-        ]);
+        ], new Response(
+            null,
+            $form->isSubmitted() && !$form->isValid() ? 422 : 200,
+        ));
     }
 
     #[Route('/clients_modal_form/{id}/edit', name: 'app_form_edit_modal_clients')]
@@ -86,6 +94,10 @@ class ClientsController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($client);
             $entityManager->flush();
+
+            if ($request->isXmlHttpRequest()) {
+                return new Response(null, 204);
+            }
         
         return $this->redirect('/clients_modal');
 
@@ -95,9 +107,14 @@ class ClientsController extends AbstractController
             'controller_name' => 'ClientsController',
             'title' => 'Modification client',
             'form' => $form->createView()            
-        ]);
+        ], new Response(
+            null,
+            $form->isSubmitted() && !$form->isValid() ? 422 : 200,
+        ));
     }
 
+
+    
     #[Route('/clients/datatables', name:'app_test_clients')]
     public function dataTableAction(Request $request, EntityManagerInterface $entityManager, ManagerRegistry $doctrine):JSONResponse{
         

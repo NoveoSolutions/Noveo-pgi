@@ -38,28 +38,38 @@ public function index(Request $request, ManagerRegistry $doctrine): Response
     ]);
   }
 
-  #[Route('/adresses/{id}/edit', name: 'app_edit_adresses')]
-    public function index_edit_modal(Adresses $adresse, Request $request, ManagerRegistry $doctrine): Response
-    { 
-        
-        $form = $this->createForm(AjoutAdresseType::class, $adresse);
-        $form->handleRequest($request);
-        
-        if ($form->isSubmitted() && $form->isValid()) {
+  #[Route('/adresses_modal_form', name: 'app_form_modal_adresses')]
+  public function index_modal(Request $request, ManagerRegistry $doctrine): Response
+  { 
 
-            $adresse = $form->getData();
-            $entityManager = $doctrine->getManager();
-            $entityManager->persist($adresse);
-            $entityManager->flush();
-        
-        return $this->redirect('/adresses');
+      //création du formulaire adresses
+      $adresse = new Adresses();
+      $form = $this->createForm(AjoutAdresseType::class, $adresse);
+      $form->handleRequest($request);
+      
+      if ($form->isSubmitted() && $form->isValid()) {
 
+          //Les actions à effectuer à la soumission du formulaiure 
+          $entityManager = $doctrine->getManager();
+          $entityManager->persist($adresse);
+          $entityManager->flush();
+
+          if ($request->isXmlHttpRequest()) {
+            return new Response(null, 204);
         }
-        
-        return $this->render('clients/index_edit_modal_form.html.twig', [
-            'controller_name' => 'ClientsController',
-            'title' => 'Modification client',
-            'form' => $form->createView()            
-        ]);
-    }
+      
+      return $this->redirect('/');
+
+      }
+      return $this->render('adresses/index_modal_form.html.twig', [
+        'controller_name' => 'AdressesController',
+        'title' => 'Ajout adresse',
+        'form' => $form->createView()            
+    ], new Response(
+            null,
+            $form->isSubmitted() && !$form->isValid() ? 422 : 200,
+        ));
+  }
+
+
 }

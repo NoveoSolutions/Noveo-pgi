@@ -8,8 +8,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-
+#[IsGranted('ROLE_USER')]
 class AjoutClientType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -19,7 +20,6 @@ class AjoutClientType extends AbstractType
             ->add('prenom')
             ->add('telephone')
             ->add('commandes')
-            ->add('Enregistrer', SubmitType::class)
         ;
     }
 

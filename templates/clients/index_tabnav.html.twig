@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+
+
+<div class="card-body">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="test-tab" data-bs-toggle="tab" href="#test" role="tab" aria-controls="test" aria-selected="false" tabindex="-1">Test</a>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="newtest-tab" data-bs-toggle="tab" href="#newtest" role="tab" aria-controls="newtest" aria-selected="true">New test</a>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="clients-tab" data-bs-toggle="tab" href="#clients" role="tab" aria-controls="clients" aria-selected="false" tabindex="-1">Clients</a>
+                      </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                      <div class="tab-pane fade" id="test" role="tabpanel" aria-labelledby="home-tab">
+                       <div id="templatetest"></div>
+                      </div>
+                      <div class="tab-pane fade active show" id="newtest" role="tabpanel" aria-labelledby="profile-tab">
+                       <div id="templatetestnew"></div>
+                      </div>
+                      <div class="tab-pane fade" id="clients" role="tabpanel" aria-labelledby="contact-tab">
+                        <div id="templateclients"></div>
+                      </div>
+                    </div>
+                  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/v/bs5/dt-1.13.1/datatables.min.js"></script>  
+<script>
+    var fragmentUrl1 = '{{ url("app_test_index") }}';
+   $('#templatetest').load(fragmentUrl1);
+    var fragmentUrl2 = '{{ url("app_test_new") }}';
+   $('#templatetestnew').load(fragmentUrl2);
+   var fragmentUrl3 = '{{ url("app_form_clients") }}';
+   $('#templateclients').load(fragmentUrl3);
+   
+
+</script>
+
+{% endblock %}

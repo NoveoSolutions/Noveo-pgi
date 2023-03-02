@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
 
+
 #[ORM\Entity(repositoryClass: AdressesRepository::class)]
 #[ApiResource]
 class Adresses

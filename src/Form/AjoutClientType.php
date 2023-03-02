@@ -2,13 +2,18 @@
 
 namespace App\Form;
 
-use App\Entity\Clients;
 use App\Entity\Adresses;
+use App\Entity\Clients;
+use App\Form\EntityType;
+use App\Form\AjoutAdresseType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\FormTypeInterface;
+
 
 #[IsGranted('ROLE_USER')]
 class AjoutClientType extends AbstractType
@@ -20,7 +25,7 @@ class AjoutClientType extends AbstractType
             ->add('prenom')
             ->add('telephone')
             ->add('commandes')
-        ;
+            ; 
     }
 
     public function configureOptions(OptionsResolver $resolver): void

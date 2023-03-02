@@ -12,6 +12,7 @@ use ApiPlatform\Metadata\Delete;
 #[ORM\Entity(repositoryClass: ClientsRepository::class)]
 #[ApiResource]
 #[Delete(security: "is_granted('ROLE_USER')")]
+
 class Clients
 {
     #[ORM\Id]

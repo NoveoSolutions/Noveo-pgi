@@ -9,7 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/test')]
 class TestController extends AbstractController
@@ -57,8 +56,7 @@ class TestController extends AbstractController
             'test' => $test,
         ]);
     }
-    
-    #[IsGranted('ROLE_USER')]
+
     #[Route('/{id}/edit', name: 'app_test_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Test $test, TestRepository $testRepository): Response
     {

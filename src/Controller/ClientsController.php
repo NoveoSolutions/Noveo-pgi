@@ -46,6 +46,16 @@ class ClientsController extends AbstractController
         ]);
     }
 
+    #[Route('/client/nav', name: 'app_tab_nav_clients')]
+    public function index_tab_nav(Request $request, ManagerRegistry $doctrine): Response
+    { 
+        
+        
+        return $this->render('clients/index_tabnav.html.twig', [
+            'controller_name' => 'ClientsController',            
+        ]);
+    }
+
     #[Route('/clients_modal_form', name: 'app_form_modal_clients')]
     public function index_modal(Request $request, ManagerRegistry $doctrine): Response
     { 
@@ -69,7 +79,6 @@ class ClientsController extends AbstractController
         return $this->redirect('/clients_modal');
 
         }
-
              
         return $this->render('clients/index_modal_form.html.twig', [
             'controller_name' => 'ClientsController',
